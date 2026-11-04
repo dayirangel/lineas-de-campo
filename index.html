@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Líneas de Campo Eléctrico</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,6 +102,9 @@ footer{display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--mut
 .a-chain{animation:chain 3s ease-in-out infinite alternate}
 @media (prefers-reduced-motion:reduce){.a-spin,.a-pol,.a-arrow,.a-chain{animation:none}}
 </style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
 
 <div class="wrap">
   <header class="top">
@@ -308,8 +316,8 @@ footer{display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--mut
     if(!on) return;
     for(const s of seeds){
       const [ex,ey]=field(s.x,s.y), m=Math.hypot(ex,ey); if(!m) continue;
-      const k=m/(m+0.15), phi=Math.atan2(ey,ex);
-      s.w+=Math.sin(2*(phi-s.t))*k*26*dt; s.w*=Math.pow(0.02,dt); s.t+=s.w*dt;
+      const k=m/(m+0.03), phi=Math.atan2(ey,ex);
+      s.w+=Math.sin(2*(phi-s.t))*k*40*dt; s.w*=Math.pow(0.02,dt); s.t+=s.w*dt;
       // atracción leve hacia donde el campo es más intenso
       const [ex2,ey2]=field(s.x+3,s.y), [ex3,ey3]=field(s.x,s.y+3);
       const g=0.6*k*dt, m2=Math.hypot(ex2,ey2), m3=Math.hypot(ex3,ey3);
@@ -388,3 +396,6 @@ footer{display:flex;flex-direction:column;gap:6px;font-size:15px;color:var(--mut
   if(!reduce) requestAnimationFrame(loop);
 })();
 </script>
+
+</body>
+</html>
